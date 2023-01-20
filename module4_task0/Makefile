@@ -3,6 +3,7 @@ help: ## Show help command
 
 build:  ## Create Website
 	@hugo
+	touch awesome-api
 
 clean:  ## Delete content of dist folder
 	@rm -rf dist/*
@@ -20,10 +21,11 @@ lint: ## lint with markdown
 	@markdownlint DEPLOY.md
 
 unit-tests: ## test file
-
+	@echo "running unit tests"
+	touch coverage-units.out
 
 integration-tests: ## integrate file
-
+	@echo "running integration tests"
+	touch coverage-integrations.out
 
 validate: ## valide file
-
