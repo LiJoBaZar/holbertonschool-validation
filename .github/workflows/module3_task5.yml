@@ -1,4 +1,4 @@
-name: module3_task5
+name: module4_task0
 on:
   push:
     branches:
@@ -22,20 +22,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: sudo module3_task5/setup.sh
+      - run: sudo module4_task0/setup.sh
       - name: install markdown
         run: npm install -g markdownlint-cli
 
-      - run: cd module3_task5 && make help
-      - run: cd module3_task5 && make build
-      - run: cd module3_task5 && make clean
-      - run: cd module3_task5 && make build
-      - run: cd module3_task5 && make post POST_NAME="name" POST_TITLE="title"
-      - run: cd module3_task5 && make lint
-      - run: cd module3_task5 && make package
-      - run: cd module3_task5 && make unit-tests
-      - run: cd module3_task5 && make integration-tests
-      - run: cd module3_task5 && make validate
+      - run: cd module4_task0 && make help
+      - run: cd module4_task0 && make build
+      - run: cd module4_task0 && make clean
+      - run: cd module4_task0 && make build
+      - run: cd module4_task0 && make post POST_NAME="name" POST_TITLE="title"
+      - run: cd module4_task0 && make lint
+      - run: cd module4_task0 && make package
+      - run: cd module4_task0 && make unit-tests
+      - run: cd module4_task0 && make integration-tests
+      - run: cd module4_task0 && make validate
       - name: Checkout
         uses: actions/checkout@v3
       - name: Release
@@ -58,7 +58,7 @@ jobs:
       - name: Netlify Actions
         uses: nwtgck/actions-netlify@v2.0.0
         with:
-          publish-dir: './module3_task5/dist'
+          publish-dir: './module4_task0/dist'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "🚀 Deployed on"
