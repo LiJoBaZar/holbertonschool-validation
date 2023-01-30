@@ -1,16 +1,58 @@
-# GoHugo introduction
+# Build a website with hugo
 
+## Prerequisites
 
-## Lifecycle:
-clean: Cleanup the content of the
-build: Generate the website from the markdown and configuration files in the directory dist/
-post: #reate a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME.
-help: shows commands usage information
+```
+Ubunto-20.04
+Install hugo in a higher version
+```
 
-## Prerequisites:
-    GNU Make in version 3.81+
-    Go Hugo v0.80+
+These distributions are for the site/web page to work properly.
 
-## Workflow:
+## Lifecycle
 
+The life cycle of the web site is represented in the different rules and their functions within the Makefile.
 
+### help
+
+With this rule in the Makefile we can create a list of all the rules and a brief description of how they work.
+
+```
+make help
+```
+
+It should look something like this:
+
+```
+Available functions
+build: build: Create all content in the website
+clean: Revome all content in the website
+post: Create a blog
+help: Helpful list of commands
+```
+
+### Build
+
+With this rule in the Makefile we can create all the necessary files to be able to run our website, with the following command we execute the command.
+
+```
+make build
+```
+
+### Post
+
+With this rule in the Makefile we can create new posts/blogs that can be displayed on our website, they can be created with the following command.
+
+```
+make POST_NAME=who-are-we POST_TITLE="Who are we" post
+```
+
+The POST_NAME is the name of the file and the POST_TITLE is the title of the file.
+
+### Clean
+
+With this rule in the Makefile we can delete the files that were generated to create the web site, with the rule build
+
+```
+make clean
+```

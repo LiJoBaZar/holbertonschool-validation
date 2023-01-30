@@ -1,31 +1,35 @@
-help: ## Show help command
-	@sed -ne '/@sed/!s/## //p' Makefile
+.PHONY: ## build clean post
 
-build:  ## Create Website
-	@hugo
-	touch awesome-api
+build: ## Build the website
+			@hugo
+			touch awesome-api
 
-clean:  ## Delete content of dist folder
-	@rm -rf dist/*
+clean: ## Clean the build directory
+			rm -r dist/*
 
-post:  ## Create a post
-	@hugo new ./content/posts/$(POST_NAME).md
-	@sed -i '/title:*/c\title: "$(POST_TITLE)"' ./content/posts/$(POST_NAME).md
+post: ## Create a new blog post
+			hugo new posts/$(POST_NAME).md
+## Update the title of the new post
+			sed -i "s/title: .*/title: $(POST_TITLE)/" ./content/posts/$(POST_NAME).md
 
-package: ## zip website
-	@hugo
-	@zip awesome-website.zip ./dist
+help: ## Show commands usage information
+			@echo "Available targets:"
+			@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//' | awk '{ printf "  %-20s %s\n", $$1, $$2 }'
 
-lint: ## lint with markdown
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
+package: ## Zip website
+			@hugo
+			@zip awesome-website.zip ./dist
 
-unit-tests: ## test file
-	@echo "running unit tests"
-	touch coverage-units.out
+lint: ## Lint with markdown
+			@markdownlint README.md
+			@markdownlint DEPLOY.md
 
-integration-tests: ## integrate file
-	@echo "running integration tests"
-	touch coverage-integrations.out
+unit-tests: ## Test file
+			@echo "running unit tests"
+			touch coverage-units.out
 
-validate: ## valide file
+integration-tests: ## Integration file
+			@echo "running integration tests"
+			touch coverage-integrations.out
+
+validate: ## validate
